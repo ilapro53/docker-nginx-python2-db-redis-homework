@@ -1,0 +1,2 @@
+consumers-1   | Error: The directory named as part of the path /var/www/todo/logs/send-notification_00.error.log does not exist in section 'program:send-notification' (file: '/etc/supervisor/conf.d/todo.conf')
+consumers-1   | For help, use /usr/bin/supervisord -h

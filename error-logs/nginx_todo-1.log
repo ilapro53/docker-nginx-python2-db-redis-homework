@@ -1,0 +1,2 @@
+nginx_todo-1  | nginx: [emerg] host not found in upstream "todo" in /etc/nginx/sites-available/todo.conf:29
+nginx_todo-1 exited with code 1

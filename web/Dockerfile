@@ -73,7 +73,8 @@ RUN pip install -r /opt/requirements.txt
 
 
 ARG WORK_DIR=/var/www/
-COPY /wsgi.py /var/www/todo/
+RUN mkdir -p /var/www/todo
+COPY /wsgi.py /var/www/todo
 # RUN chmod +x /var/www/todo/wsgi.py
 
 USER root
