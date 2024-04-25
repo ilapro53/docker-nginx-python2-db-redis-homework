@@ -1,7 +1,12 @@
-FROM python:2.7-stretch
+FROM python:3.6
 # uWSGI:
 USER root
+# RUN pip install --upgrade pip
+RUN apt-get install gcc
 RUN pip install uwsgi
+
+USER root
+RUN mkdir -p /var/www/todo/logs/
 
 # Copy the base uWSGI ini file to enable default dynamic uwsgi process number
 COPY ./uwsgi.ini /etc/uwsgi/
@@ -25,7 +30,7 @@ RUN if [ ${INSTALL_CRON} = true ]; then \
 
 # SUPERVISOR:
 USER root
-ARG INSTALL_SUPERVISOR=false
+ARG INSTALL_SUPERVISOR=true
 RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
     apt-get update -yqq ; \
     apt-get -y install supervisor \
@@ -77,9 +82,10 @@ RUN if [ ${INSTALL_PG_CLIENT} = true ]; then \
 
 COPY ./requirements.txt /opt/
 RUN pip install -r /opt/requirements.txt
-COPY ./supervisor/supervisord.conf /etc/supervisor/
+COPY ./supervisor/supervisord.conf /etc/supervisor/conf.d/
+COPY ./supervisor/todo.conf /etc/supervisor/conf.d/
 ARG WORK_DIR=/var/www
 RUN usermod -u 1000 www-data
 WORKDIR ${WORK_DIR}
 CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf" ]
-expose 9000
+EXPOSE 9000
