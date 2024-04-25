@@ -27,7 +27,7 @@ RUN if [ ${INSTALL_SUPERVISOR} = true ]; then \
 
 # NPM:
 USER root
-ARG INSTALL_NPM=false
+ARG INSTALL_NPM=true
 ARG NODE_VERSION
 RUN if [ ${INSTALL_NPM} = true ]; then \
     apt-get update -yqq ; \
@@ -57,7 +57,7 @@ RUN if [ ${INSTALL_IMAGE_OPTIMIZERS} = true ]; then \
     apt-get install -y jpegoptim optipng pngquant gifsicle \
 ;fi
 # pgsql client
-ARG INSTALL_PG_CLIENT=false
+ARG INSTALL_PG_CLIENT=true
 RUN if [ ${INSTALL_PG_CLIENT} = true ]; then \
     # Create folders if not exists (https://github.com/tianon/docker-brew-debian/issues/65)
     mkdir -p /usr/share/man/man1 && \
@@ -68,8 +68,15 @@ RUN if [ ${INSTALL_PG_CLIENT} = true ]; then \
 
 COPY ./requirements.txt /opt/
 RUN pip install -r /opt/requirements.txt
-ARG WORK_DIR=/var/www
+
+ARG WORK_DIR=/var/www/
+COPY /wsgi.py /var/www/todo
+RUN chmod +x /var/www/todo/wsgi.py
+
+USER root
+RUN chown -R www-data:www-data /var/www/todo/*
 RUN usermod -u 1000 www-data
 WORKDIR ${WORK_DIR}
+RUN echo | ls
 CMD [ "uwsgi" ]
 #PORT

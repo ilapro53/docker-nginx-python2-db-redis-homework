@@ -80,7 +80,10 @@ services:
         - backend
 
     redis:
-      ##build
+      build:
+        context: ./redis
+        args:
+          - REDIS_PORT=${REDIS_PORT}
       volumes:
         - ${DATA_PATH_HOST}/redis:/data
       ports:
