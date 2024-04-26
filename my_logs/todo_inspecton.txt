@@ -1,0 +1,32 @@
+> docker ps
+CONTAINER ID   IMAGE                                          COMMAND                  CREATED          STATUS          PORTS                               NAMES
+d3907aa05f16   docker-nginx-python2-db-redis-homework-db      "docker-entrypoint.s…"   13 minutes ago   Up 13 minutes   33060/tcp, 0.0.0.0:3366->3306/tcp   docker-nginx-python2-db-redis-homework-db-1
+1bb71a986bdd   docker-nginx-python2-db-redis-homework-redis   "docker-entrypoint.s…"   13 minutes ago   Up 13 minutes   0.0.0.0:6379->6379/tcp              docker-nginx-python2-db-redis-homework-redis-1
+
+> docker images
+REPOSITORY                                          TAG       IMAGE ID       CREATED             SIZE
+docker-nginx-python2-db-redis-homework-todo         latest    3e41ab7fe7e2   31 minutes ago      1.1GB
+docker-nginx-python2-db-redis-homework-nginx_todo   latest    6151e966ad7a   About an hour ago   55.6MB
+docker-nginx-python2-db-redis-homework-consumers    latest    23cca0bd9551   About an hour ago   1.09GB
+docker-nginx-python2-db-redis-homework-db           latest    222e4df0f9c6   2 hours ago         372MB
+docker-nginx-python2-db-redis-homework-redis        latest    22f744602be8   2 hours ago         41.1MB
+
+> docker run -it 3e41ab7fe7e2 bash
+root@33063f81de01:/var/www/todo# cd ..
+root@33063f81de01:/var/www# tree
+.
+└── todo
+    └── wsgi.py
+
+1 directory, 1 file
+
+root@33063f81de01:/var/www# cd ..
+root@33063f81de01:/var# ls
+backups  cache  lib  local  lock  log  mail  opt  run  spool  tmp  www
+
+root@33063f81de01:/var# cd /etc/uwsgi/
+root@33063f81de01:/etc/uwsgi# tree
+.
+└── uwsgi.ini
+
+0 directories, 1 file

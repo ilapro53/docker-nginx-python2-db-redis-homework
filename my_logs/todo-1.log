@@ -1,0 +1,50 @@
+todo-1        | [uWSGI] getting INI configuration from /etc/uwsgi/uwsgi.ini
+todo-1        | open("./python_plugin.so"): No such file or directory [core/utils.c line 3709]
+todo-1        | !!! UNABLE to load uWSGI plugin: ./python_plugin.so: cannot open shared object file: No such file or directory !!!
+todo-1        |
+todo-1        | ;uWSGI instance configuration
+todo-1        | [uwsgi]
+todo-1        | ini = /etc/uwsgi/uwsgi.ini
+todo-1        | socket = :9000
+todo-1        | chown-socket = root:root
+todo-1        | chmod-socket = 666
+todo-1        | hook-master-start = unix_signal:15 gracefully_kill_them_all
+todo-1        | need-app = true
+todo-1        | die-on-term = true
+todo-1        | plugin = python
+todo-1        | show-config = true
+todo-1        | module = todo.wsgi:application
+todo-1        | py-autoreload = 1
+todo-1        | cheaper = 2
+todo-1        | processes = 16
+todo-1        | ;end of configuration
+todo-1        |
+todo-1        | *** Starting uWSGI 2.0.25.1 (64bit) on [Thu Apr 25 23:00:40 2024] ***
+todo-1        | compiled with version: 10.2.1 20210110 on 25 April 2024 22:15:31
+todo-1        | os: Linux-5.15.146.1-microsoft-standard-WSL2 #1 SMP Thu Jan 11 04:09:03 UTC 2024
+todo-1        | nodename: 66f8a0b5e3ca
+todo-1        | machine: x86_64
+todo-1        | clock source: unix
+todo-1        | pcre jit disabled
+todo-1        | detected number of CPU cores: 4
+todo-1        | current working directory: /var/www/todo
+todo-1        | detected binary path: /usr/local/bin/uwsgi
+todo-1        | your memory page size is 4096 bytes
+todo-1        | detected max file descriptor number: 1048576
+todo-1        | lock engine: pthread robust mutexes
+todo-1        | thunder lock: disabled (you can enable it with --thunder-lock)
+todo-1        | uwsgi socket 0 bound to TCP address :9000 fd 3
+todo-1        | uWSGI running as root, you can use --uid/--gid/--chroot options
+todo-1        | *** WARNING: you are running uWSGI as root !!! (use the --uid flag) ***
+todo-1        | Python version: 3.6.15 (default, Dec 21 2021, 12:03:22)  [GCC 10.2.1 20210110]
+todo-1        | Python main interpreter initialized at 0x56106e0d2e30
+todo-1        | uWSGI running as root, you can use --uid/--gid/--chroot options
+todo-1        | *** WARNING: you are running uWSGI as root !!! (use the --uid flag) ***
+todo-1        | python threads support enabled
+todo-1        | your server socket listen backlog is limited to 100 connections
+todo-1        | your mercy for graceful operations on workers is 60 seconds
+todo-1        | mapped 1239640 bytes (1210 KB) for 16 cores
+todo-1        | *** Operational MODE: preforking ***
+todo-1        | ModuleNotFoundError: No module named 'todo'
+todo-1        | unable to load app 0 (mountpoint='') (callable not found or import error)
+todo-1        | *** no app loaded. GAME OVER ***
